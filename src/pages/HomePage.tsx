@@ -1,8 +1,8 @@
 import { Link } from 'react-router-dom';
 
-import styles from './Home.module.css';
+import styles from './HomePage.module.css';
 
-const Home = () => {
+const HomePage = () => {
   return (
     <section className={styles.section}>
       <h1>
@@ -24,4 +24,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HomePage;
