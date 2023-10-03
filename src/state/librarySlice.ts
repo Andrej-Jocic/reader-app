@@ -1,6 +1,7 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import Book from '../entities/Book';
 import { APIClient } from '../services/api-client';
+import { RootState } from '../store';
 
 interface LibraryState {
   books: Book[];
@@ -46,5 +47,10 @@ export const updateBooks = createAsyncThunk(
     return books;
   }
 );
+
+export const getSearchResult = (state: RootState) => state.library.books;
+
+export const getSearchLoadingState = (state: RootState) =>
+  state.library.loading;
 
 export default librarySlice.reducer;

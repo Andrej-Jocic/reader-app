@@ -10,7 +10,7 @@ function transformBooks(books: BookResponse[]): Book[] {
     title: book.title,
     author: book.author_name,
     publishYear: book.first_publish_year,
-    coverId: transformBookCover(book.cover_i),
+    coverURL: transformBookCover(book.cover_i),
   }));
 }
 

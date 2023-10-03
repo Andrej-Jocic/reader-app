@@ -1,0 +1,78 @@
+.bookItem {
+  padding: 3rem 2rem;
+  border-radius: 4px;
+
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 5px 15px 0px;
+  transition: all 300ms ease-in-out;
+  background-color: #dcdcdc;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+.bookItem:hover {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.box {
+  display: flex;
+  gap: 1rem;
+  margin-top: 0.7rem;
+}
+
+.bookItemImg {
+  overflow: hidden;
+}
+.bookItemImg img {
+  max-height: 20rem;
+  max-width: 180px;
+  margin-right: auto;
+  margin-left: auto;
+  transition: transform 0.3s ease;
+}
+
+.bookItemImg:hover img {
+  transform: scale(1.1);
+}
+
+.bookItemInfo {
+  margin-top: 2rem;
+  text-align: center;
+}
+
+.bookItemInfo a:link,
+.bookItemInfo a:visited {
+  color: #242a2e;
+  text-decoration: none;
+}
+
+.title {
+  line-height: 1.4;
+  margin-bottom: 0.8rem;
+  font-weight: 700;
+  font-size: 1.8rem;
+  transition: all 0.2s ease;
+}
+.title:hover {
+  color: #00c46a;
+}
+
+.author {
+  color: #2d3439;
+  line-height: 1.4;
+  margin-bottom: 4px;
+  font-size: 1.5rem;
+}
+
+.year {
+  color: #2d3439;
+
+  opacity: 0.7;
+  font-style: italic;
+  font-size: 1.5rem;
+}
+.capitalize {
+  font-weight: 500;
+  text-transform: capitalize;
+}

@@ -2,6 +2,7 @@
 
 // import { getBooks, getLoadingState } from './librarySlice';
 
+import BooksList from '../components/BookList';
 import Search from '../components/Search';
 import styles from './LibraryPage.module.css';
 
@@ -11,7 +12,7 @@ const Library = () => {
   return (
     <section className={styles.section}>
       <Search />
-      {/* <BooksList books={books} loading={loading} /> */}
+      <BooksList />
     </section>
   );
 };

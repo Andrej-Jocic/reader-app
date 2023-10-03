@@ -1,0 +1,27 @@
+.booklist {
+  padding: 3rem 3rem;
+  background-color: #ececec;
+}
+
+.booklistContent {
+  display: grid;
+  gap: 3rem;
+}
+
+@media screen and (min-width: 700px) {
+  .booklistContent {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (min-width: 992px) {
+  .booklistContent {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
+
+@media screen and (min-width: 1580px) {
+  .booklistContent {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}

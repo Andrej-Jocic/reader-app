@@ -28,3 +28,10 @@
 .search::placeholder {
   color: #aaa;
 }
+
+@media screen and (max-width: 600px) {
+  .search {
+    height: 3rem;
+    font-size: 1.3rem;
+  }
+}
