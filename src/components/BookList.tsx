@@ -9,6 +9,7 @@ const BooksList = () => {
   const loading = useSelector(getSearchLoadingState);
 
   if (loading) return <Spinner />;
+
   if (books.length === 0) return null;
 
   return (

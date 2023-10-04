@@ -1,0 +1,42 @@
+.box {
+  background-color: white;
+  width: 70%;
+  border-radius: 1rem;
+  display: flex;
+  flex-direction: column;
+  /* align-items: center; */
+  margin-right: 3.5rem;
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 10px 20px 0px;
+  color: #2d3439;
+  font-size: 1.3rem;
+  font-weight: 500;
+  max-height: 20rem;
+  overflow: auto;
+  position: absolute;
+  z-index: 9999;
+  top: 23rem;
+}
+
+.box li {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.box li button {
+  margin-right: 5px;
+}
+
+.box a {
+  margin-top: 1rem;
+  padding: 0.5rem;
+  min-width: 10%;
+  text-decoration: none;
+  color: #2d3439;
+
+  margin: 0 auto;
+}
+
+.box a:hover {
+  color: #00c46a;
+  cursor: pointer;
+}

@@ -1,14 +1,17 @@
 import { Outlet } from 'react-router-dom';
 import styles from './AppLayout.module.css';
 import PageNavigation from './PageNavigation';
+import { ReactNode } from 'react';
 
-const AppLayout = () => {
+interface Props {
+  outlet?: ReactNode;
+}
+
+const AppLayout = ({ outlet = false }: Props) => {
   return (
     <div className={styles.container}>
       <PageNavigation />
-      <main>
-        <Outlet />
-      </main>
+      <main>{outlet ? outlet : <Outlet />}</main>
     </div>
   );
 };

@@ -1,13 +1,29 @@
 import { useEffect } from 'react';
 import { APIClient } from '../services/api-client';
+import { updateAutocomplete } from '../state/librarySlice';
+import { useDispatch } from './useDispatch';
 
 const apiClient = new APIClient('/search.json');
 
 function useSearch(query: string) {
+  const dispatch = useDispatch();
   useEffect(() => {
     if (query.length === 0) return;
 
-    const { cancle } = apiClient.getSearchResult(query);
+    const controller = new AbortController();
+
+    async function fetchAutocomplete() {
+      const books = apiClient.getSearchResult({
+        params: { q: query, limit: 12 },
+        signal: controller.signal,
+      });
+      const autocomplete = await books;
+      autocomplete && dispatch(updateAutocomplete(autocomplete));
+    }
+
+    fetchAutocomplete();
+    //const autocompleteResults = books;
+    // dispatch(action())
     /* books
       .then((res) => {
         console.log(transformBooks(res.data.docs));
@@ -29,10 +45,10 @@ function useSearch(query: string) {
     // document.addEventListener('click', handleClick);
 
     return () => {
-      cancle();
+      controller.abort();
       //   document.removeEventListener('click', handleClick);
     };
-  }, [query]);
+  }, [query, dispatch]);
 }
 
 export default useSearch;

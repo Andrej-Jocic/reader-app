@@ -1,0 +1,10 @@
+.btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+}
+.bookmark {
+  top: 18px;
+  right: 18px;
+  position: absolute;
+}

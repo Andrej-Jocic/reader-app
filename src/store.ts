@@ -1,9 +1,11 @@
 import { configureStore } from '@reduxjs/toolkit';
 import librarySlice from './state/librarySlice';
+import bookshelfSlice from './state/bookshelfSlice';
 
 const store = configureStore({
   reducer: {
     library: librarySlice,
+    bookshelf: bookshelfSlice,
   },
 });
 

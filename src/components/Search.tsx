@@ -3,10 +3,14 @@ import { FaSearch } from 'react-icons/fa';
 import { updateBooks } from '../state/librarySlice';
 import styles from './Search.module.css';
 import { useDispatch } from '../hooks/useDispatch';
+import useSearch from '../hooks/useSearch';
+import Autocomplete from './Autocomplete';
 
 const Search = () => {
   // State for capturing the user's current input in the Search input field.
   const [query, setQuery] = useState('');
+  // Custom hook to handle autocomplete feature
+  useSearch(query);
 
   const dispatch = useDispatch();
 
@@ -26,20 +30,23 @@ const Search = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <div className={styles.wrapper}>
-        <input
-          className={styles.search}
-          type="text"
-          placeholder="Explore library"
-          value={query}
-          onChange={(e) => handleChange(e.target.value)}
-        />
-        <button type="submit">
-          <FaSearch size={20} color="#00c46a" />
-        </button>
-      </div>
-    </form>
+    <>
+      <form onSubmit={handleSubmit}>
+        <div className={styles.wrapper}>
+          <input
+            className={styles.search}
+            type="text"
+            placeholder="Explore library"
+            value={query}
+            onChange={(e) => handleChange(e.target.value)}
+          />
+          <button type="submit">
+            <FaSearch size={20} color="#00c46a" />
+          </button>
+        </div>
+      </form>
+      <Autocomplete />
+    </>
   );
 };
 
