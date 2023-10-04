@@ -1,0 +1,99 @@
+.cta {
+  display: inline-block;
+  background-color: #00c46a;
+  color: #2d3439;
+  text-transform: uppercase;
+  text-decoration: none;
+  font-size: 1.6rem;
+  font-weight: 600;
+  padding: 1rem 3rem;
+  border-radius: 5px;
+  border: none;
+  transition: all 0.2s ease;
+  align-self: center;
+}
+.cta:hover {
+  transform: translateY(-7px);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+}
+
+.cta:active {
+  transform: translateY(-1px);
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 5px 0px;
+}
+
+.search {
+  border: none;
+  outline: 0;
+  font-family: inherit;
+  font-size: 1.6rem;
+  width: 20%;
+  height: 5rem;
+  border-radius: 1rem;
+  text-align: center;
+  color: #2d3439;
+  font-weight: 500;
+  align-self: center;
+}
+
+.book {
+  color: #ececec;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 2rem;
+}
+form {
+  display: flex;
+  flex-direction: column;
+}
+.box {
+  align-self: center;
+  padding: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.7rem;
+}
+
+.book input {
+  width: 20px;
+  height: 20px;
+
+  appearance: none;
+  border: 2px solid #00c46a;
+  background-color: white;
+  border-radius: 4px;
+}
+.book input:checked {
+  background-color: #00c46a;
+  border-color: #00c46a;
+}
+.container {
+  margin: 0 auto;
+  padding: 0 3rem;
+  color: #ececec;
+}
+
+.content {
+  list-style: none;
+  display: flex;
+  gap: 6rem;
+}
+.content li {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-size: 1.8rem;
+}
+.content li p {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.content a:link,
+.content a:visited {
+  color: #ececec;
+
+  text-decoration: none;
+}

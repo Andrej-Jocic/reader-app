@@ -1,26 +1,34 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import Book from '../entities/Book';
 import { RootState } from '../store';
+import Shelf from '../entities/Shelf';
+
+interface ToggleBookmarkPayload {
+  id: string;
+}
+
+interface CreateShelfPayload {
+  shelfName: string;
+  bookIds: string[];
+}
 
 interface BookshelfState {
   bookmarkedBookIds: string[];
   bookmarkedBooks: Book[];
+  shelf: Shelf[];
 }
 
 const initialState: BookshelfState = {
   bookmarkedBookIds: [],
   bookmarkedBooks: [],
+  shelf: [],
 };
-
-interface toggleBookmarkAction {
-  id: string;
-}
 
 const bookshelfSlice = createSlice({
   name: 'bookshelf',
   initialState,
   reducers: {
-    toggleBookmark(state, action: PayloadAction<toggleBookmarkAction>) {
+    toggleBookmark(state, action: PayloadAction<ToggleBookmarkPayload>) {
       const index = state.bookmarkedBookIds.indexOf(action.payload.id);
 
       if (index === -1) {
@@ -44,6 +52,13 @@ const bookshelfSlice = createSlice({
         state.bookmarkedBooks.splice(index, 1);
       }
     },
+    createShelf(state, action: PayloadAction<CreateShelfPayload>) {
+      const ids = action.payload.bookIds;
+      const books = state.bookmarkedBooks.filter((book) =>
+        ids.includes(book.id)
+      );
+      state.shelf.push({ shelfName: action.payload.shelfName, books });
+    },
   },
 });
 
@@ -53,5 +68,16 @@ export const getBookmarkedBookIds = (state: RootState) =>
 export const getBookmarkedBooks = (state: RootState) =>
   state.bookshelf.bookmarkedBooks;
 
-export const { toggleBookmark, toogleBook } = bookshelfSlice.actions;
+export const getBookmarkedBooksLength = (state: RootState) =>
+  state.bookshelf.bookmarkedBooks.length;
+
+export const getShelves = (state: RootState) => state.bookshelf.shelf;
+export const getShelvesLength = (state: RootState) =>
+  state.bookshelf.shelf.length;
+
+export const getShelfNames = (state: RootState) =>
+  state.bookshelf.shelf.map((shelf) => shelf.shelfName);
+
+export const { toggleBookmark, toogleBook, createShelf } =
+  bookshelfSlice.actions;
 export default bookshelfSlice.reducer;
