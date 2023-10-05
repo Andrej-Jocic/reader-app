@@ -8,6 +8,7 @@ import {
   getShelfNames,
 } from '../state/bookshelfSlice';
 import styles from './ShelvesPage.module.css';
+import sliceTitle from '../helpers/sliceTitle';
 
 const ShelvesPage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -65,7 +66,7 @@ const ShelvesPage = () => {
                     id={book.id}
                     type="checkbox"
                   />
-                  {book.title}, {book.publishYear}
+                  {sliceTitle(book.title)}, {book.publishYear}
                 </label>
               ))}
             </div>
