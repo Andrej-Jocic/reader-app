@@ -59,12 +59,18 @@ const ShelvesPage = () => {
             />
             <div className={styles.box}>
               {books.map((book) => (
-                <label htmlFor={book.id} key={book.id} className={styles.book}>
+                <label
+                  htmlFor={book.id}
+                  key={book.id}
+                  className={styles.book}
+                  title={book.title}
+                >
                   <input
                     name={book.id}
                     value={book.id}
                     id={book.id}
                     type="checkbox"
+                    title={book.title}
                   />
                   {sliceTitle(book.title)}, {book.publishYear}
                 </label>

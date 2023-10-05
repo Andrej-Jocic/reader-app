@@ -52,7 +52,7 @@ function BookItem({ book }: Props) {
 
       <div className={styles.bookItemInfo}>
         <Link to={`/book/${book.id}`}>
-          <div className={styles.title}>
+          <div className={styles.title} title={book.title}>
             <span>{sliceTitle(book.title)}</span>
           </div>
         </Link>

@@ -8,7 +8,7 @@ const ShelfItem = ({ shelf }: { shelf: Shelf }) => {
     <li>
       <h1>{shelf.shelfName}</h1>
       {shelf.books.map((book) => (
-        <p key={book.id}>
+        <p key={book.id} title={book.title}>
           <HiArrowNarrowRight color="#00c46a" />
           <Link to={`/book/${book.id}`}>
             {sliceTitle(book.title)}, {book.publishYear}
