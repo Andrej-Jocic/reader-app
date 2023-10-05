@@ -12,7 +12,6 @@ import {
 import { getAutocomplete } from '../state/librarySlice';
 import Icon from '../ui/Icon';
 import styles from './Autocomplete.module.css';
-import sliceTitle from '../helpers/sliceTitle';
 
 const Autocomplete = () => {
   const ref = useRef<HTMLUListElement | null>(null);
@@ -35,7 +34,7 @@ const Autocomplete = () => {
       {autocomplete.map((book) => (
         <li key={book.id}>
           <Link to={`/book/${book.id}`}>
-            <span>{sliceTitle(book.title)}</span>
+            <span>{book.title}</span>
           </Link>
           <Icon
             title="Bookmark"
