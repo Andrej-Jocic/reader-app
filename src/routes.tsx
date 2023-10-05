@@ -6,7 +6,8 @@ import ErrorPage from './pages/ErrorPage';
 import BookshelfPage from './pages/BookshelfPage';
 import BookshelfAllPage from './pages/BookshelfAllPage';
 import ShelvesPage from './pages/ShelvesPage';
-import BookPage, { loader as bookLoader } from './pages/BookPage';
+import BookPage from './pages/BookPage';
+import bookLoader from './loaders/bookPage.loader';
 
 const router = createBrowserRouter([
   {

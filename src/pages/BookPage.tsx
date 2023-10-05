@@ -1,15 +1,17 @@
 import { FaArrowLeft } from 'react-icons/fa';
-import { Params, useLoaderData, useNavigate } from 'react-router-dom';
+import { useLoaderData, useNavigate } from 'react-router-dom';
 import BookDetails from '../entities/BookDetails';
 import displayAuthors from '../helpers/displayAuthors';
-import { APIClient } from '../services/api-client';
 import styles from './BookPage.module.css';
+import { useSelector } from 'react-redux';
+import { getBookmarkedBookIds } from '../state/bookshelfSlice';
+import Notes from '../components/Notes';
 
-// TODO: Fix CSS and no values for description, publish year,...
 const BookPage = () => {
   const navigate = useNavigate();
 
   const book = useLoaderData() as BookDetails;
+  const bookmarked = useSelector(getBookmarkedBookIds);
 
   return (
     <section className={styles.bookDetails}>
@@ -64,17 +66,9 @@ const BookPage = () => {
           </div>
         </div>
       </div>
-      {/* {bookmarked && <Notes id={book.id} />} */}
+      {bookmarked.includes(book.id) && <Notes />}
     </section>
   );
-};
-
-const apiClient = new APIClient('/works');
-
-// TODO: extract in different file
-export const loader = async ({ params }: { params: Params }) => {
-  const book = apiClient.getBook(params);
-  return book;
 };
 
 export default BookPage;
