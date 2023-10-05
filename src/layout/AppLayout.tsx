@@ -1,7 +1,7 @@
+import { ReactNode } from 'react';
 import { Outlet } from 'react-router-dom';
 import styles from './AppLayout.module.css';
 import PageNavigation from './PageNavigation';
-import { ReactNode } from 'react';
 
 interface Props {
   outlet?: ReactNode;

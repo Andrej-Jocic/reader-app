@@ -24,7 +24,7 @@ const Search = () => {
     setQuery('');
   };
 
-  // On search input change, capture the user's current input in the Search input field and store it to `query`.
+  // On search input change, capture the user's current input in the Search input field and store it to `query` which triggers the `useSearch()` custom hook to handle autocomplete feature .
   const handleChange = (query: string) => {
     setQuery(query);
   };

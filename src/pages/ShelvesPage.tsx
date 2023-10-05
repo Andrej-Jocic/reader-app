@@ -1,5 +1,6 @@
 import { FormEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
+import ShelfList from '../components/ShelfList';
 import { useDispatch } from '../hooks/useDispatch';
 import {
   createShelf,
@@ -7,7 +8,6 @@ import {
   getShelfNames,
 } from '../state/bookshelfSlice';
 import styles from './ShelvesPage.module.css';
-import ShelfList from '../components/ShelfList';
 
 const ShelvesPage = () => {
   const [showForm, setShowForm] = useState(false);

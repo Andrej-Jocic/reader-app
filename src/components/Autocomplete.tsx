@@ -1,19 +1,18 @@
 import { useRef } from 'react';
 import { useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
+import Book from '../entities/Book';
 import useCloseAutocomplete from '../hooks/useCloseAutocomplete';
-import { getAutocomplete } from '../state/librarySlice';
-import Icon from '../ui/Icon';
-import styles from './Autocomplete.module.css';
+import { useDispatch } from '../hooks/useDispatch';
 import {
   getBookmarkedBookIds,
   toggleBookmark,
   toogleBook,
 } from '../state/bookshelfSlice';
-import { useDispatch } from '../hooks/useDispatch';
-import Book from '../entities/Book';
+import { getAutocomplete } from '../state/librarySlice';
+import Icon from '../ui/Icon';
+import styles from './Autocomplete.module.css';
 
-// when add bookmark remove absolute postion for these
 const Autocomplete = () => {
   const ref = useRef<HTMLUListElement | null>(null);
 
@@ -29,6 +28,7 @@ const Autocomplete = () => {
     dispatch(toogleBook(book));
     dispatch(toggleBookmark({ id: book.id }));
   }
+
   return (
     <ul ref={ref} className={styles.box}>
       {autocomplete.map((book) => (

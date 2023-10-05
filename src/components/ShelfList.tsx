@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
+import styles from '../pages/ShelvesPage.module.css';
 import { getShelves } from '../state/bookshelfSlice';
 import ShelfItem from './ShelfItem';
-import styles from '../pages/ShelvesPage.module.css';
 
 function ShelfList() {
   const shelves = useSelector(getShelves);
