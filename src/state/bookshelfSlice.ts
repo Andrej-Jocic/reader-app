@@ -75,6 +75,7 @@ export const getBookmarkedBooksLength = (state: RootState) =>
   state.bookshelf.bookmarkedBooks.length;
 
 export const getShelves = (state: RootState) => state.bookshelf.shelf;
+
 export const getShelvesLength = (state: RootState) =>
   state.bookshelf.shelf.length;
 
@@ -83,4 +84,5 @@ export const getShelfNames = (state: RootState) =>
 
 export const { toggleBookmark, toogleBook, createShelf } =
   bookshelfSlice.actions;
+
 export default bookshelfSlice.reducer;

@@ -22,11 +22,11 @@ const initialState: InitialState = {
   doneBooks: [],
 };
 
-// TODO: add the `done` feture
 const bookSlice = createSlice({
   name: 'book',
   initialState,
   reducers: {
+    // Check whether notes for this book already exist. If they do, append the new note to the existing ones. Otherwise, create a new set of notes for this book and add the new note to them.
     addNote(state, action: PayloadAction<Note>) {
       const matchingItem = state.notes.find((note) =>
         Object.keys(note).includes(action.payload.id)

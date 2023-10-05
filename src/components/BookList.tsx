@@ -1,11 +1,11 @@
 import { useSelector } from 'react-redux';
-import { getSearchLoadingState, getSearchResult } from '../state/librarySlice';
+import { getSearchLoadingState, getSearchBooks } from '../state/librarySlice';
 import Spinner from '../ui/Spinner';
 import BookItem from './BookItem';
 import styles from './BookList.module.css';
 
 const BooksList = () => {
-  const books = useSelector(getSearchResult);
+  const books = useSelector(getSearchBooks);
   const loading = useSelector(getSearchLoadingState);
 
   if (loading) return <Spinner />;

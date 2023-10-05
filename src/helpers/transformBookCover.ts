@@ -1,5 +1,4 @@
-// cover sizes: 'S', 'M' and 'L'
-const COVER_SIZE = 'L';
+import { COVER_SIZE } from '../constants';
 
 // Generate a link for the book cover based on the cover ID. If no cover is available for the book, it returns the 'noCover.jpg' image.
 function transformBookCover(coverId: number | undefined) {

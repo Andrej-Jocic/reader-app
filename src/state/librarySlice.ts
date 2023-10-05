@@ -1,6 +1,7 @@
 import { PayloadAction, createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { LIMIT } from '../constants';
 import Book from '../entities/Book';
-import { APIClient } from '../services/api-client';
+import searchService from '../services/search-service';
 import { RootState } from '../store';
 
 interface LibraryState {
@@ -27,9 +28,6 @@ const librarySlice = createSlice({
     closeAutocomplete(state) {
       state.autocomplete = [];
     },
-    // loadingBooks(state) {
-    //   state.loading = true;
-    // },
   },
   extraReducers: (builder) =>
     builder
@@ -45,23 +43,17 @@ const librarySlice = createSlice({
       }),
 });
 
-const LIMIT = 12;
-
-// TODO: refactor this
-const apiClient = new APIClient('/search.json');
-
 export const updateBooks = createAsyncThunk(
   'library/updateBooks',
   async function (query: string) {
-    const books = apiClient.getSearchResult({
+    const books = searchService.getSearchResult({
       params: { q: query, limit: LIMIT },
     });
     return books;
   }
 );
 
-//TODO: change name
-export const getSearchResult = (state: RootState) => state.library.books;
+export const getSearchBooks = (state: RootState) => state.library.books;
 
 export const getAutocomplete = (state: RootState) => state.library.autocomplete;
 

@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import { APIClient } from '../services/api-client';
+import { LIMIT } from '../constants';
+import searchService from '../services/search-service';
 import { updateAutocomplete } from '../state/librarySlice';
 import { useDispatch } from './useDispatch';
 
-const apiClient = new APIClient('/search.json');
-
+// Custom hook that handle autocomplete feature
 function useSearch(query: string) {
   const dispatch = useDispatch();
   useEffect(() => {
@@ -13,40 +13,17 @@ function useSearch(query: string) {
     const controller = new AbortController();
 
     async function fetchAutocomplete() {
-      const books = apiClient.getSearchResult({
-        params: { q: query, limit: 12 },
+      const books = searchService.getSearchResult({
+        params: { q: query, limit: LIMIT },
         signal: controller.signal,
       });
       const autocomplete = await books;
       autocomplete && dispatch(updateAutocomplete(autocomplete));
     }
-
     fetchAutocomplete();
-    //const autocompleteResults = books;
-    // dispatch(action())
-    /* books
-      .then((res) => {
-        console.log(transformBooks(res.data.docs));
-      })
-      .catch((err) => {
-        if (err instanceof CanceledError) return;
-        //TODO: throw error and catch it with React ROUTer
-        if (err instanceof AxiosError) console.log(err.message);
-      }); */
-
-    // TODO : DISPATCH
-    // TODO: separate effect for handleClick and fetch and extract it in custom hooks
-
-    // const handleClick = (e: globalThis.MouseEvent) => {
-    //   if (ref.current && !ref.current.contains(e.target as Node))
-    //     setResults([]);
-    // };
-
-    // document.addEventListener('click', handleClick);
 
     return () => {
       controller.abort();
-      //   document.removeEventListener('click', handleClick);
     };
   }, [query, dispatch]);
 }

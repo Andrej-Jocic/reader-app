@@ -1,4 +1,4 @@
-const MAX_LENGTH = 30;
+import { MAX_LENGTH } from '../constants';
 
 // Slices the `title` if it exceeds a maximum length specified by `MAX_LENGTH`
 function sliceTitle(title: string) {

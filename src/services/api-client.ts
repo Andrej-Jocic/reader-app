@@ -1,8 +1,8 @@
-import axios, { AxiosRequestConfig, CanceledError, AxiosError } from 'axios';
-import BookResponse from '../entities/BookResponse';
-import transformBooks from '../helpers/transformBooks';
+import axios, { AxiosError, AxiosRequestConfig, CanceledError } from 'axios';
 import { Params } from 'react-router-dom';
+import BookResponse from '../entities/BookResponse';
 import transformBook from '../helpers/transformBook';
+import transformBooks from '../helpers/transformBooks';
 
 interface FetchResponse {
   docs: BookResponse[];
@@ -27,7 +27,6 @@ class APIClient {
     return books;
   }
 
-  // TODO: remove if cause problems
   getBook(params: Params<'id'>) {
     const book = axiosInstance
       .get(`${this.endpoint}/${params.id}.json`)
@@ -36,4 +35,7 @@ class APIClient {
   }
 }
 
-export { APIClient };
+function create(endpoint: string) {
+  return new APIClient(endpoint);
+}
+export default create;

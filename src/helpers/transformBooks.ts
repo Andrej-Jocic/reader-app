@@ -3,7 +3,7 @@ import BookResponse from '../entities/BookResponse';
 import transformBookCover from './transformBookCover';
 import transformBookID from './transformBookID';
 
-// Processes a list of books retrieved from the Open Library Books API and maps the keys to more friendly format."
+// Processes a list of books retrieved from the Open Library Books API and maps the keys to more friendly format
 function transformBooks(books: BookResponse[]): Book[] {
   return books.map((book) => ({
     id: transformBookID(book.key),

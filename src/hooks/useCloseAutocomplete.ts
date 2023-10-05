@@ -2,6 +2,7 @@ import { RefObject, useEffect } from 'react';
 import { useDispatch } from './useDispatch';
 import { closeAutocomplete } from '../state/librarySlice';
 
+// custom hook to close autocomplete window when user click outside it
 function useCloseAutocomplete(ref: RefObject<HTMLUListElement>) {
   const dispatch = useDispatch();
   useEffect(() => {

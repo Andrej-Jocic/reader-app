@@ -3,7 +3,6 @@ import {
   IoCheckmarkDoneCircleSharp,
   IoCheckmarkDoneCircleOutline,
 } from 'react-icons/io5';
-
 import styles from './Icon.module.css';
 
 type IconProps = {
@@ -17,6 +16,7 @@ type ShowIcon = {
   active: boolean;
 };
 
+// A component that displays a `bookmark` or `done` icon.
 const Icon = ({ onClick, title, active, absoulte = false }: IconProps) => {
   return (
     <button
@@ -42,10 +42,10 @@ const Bookmark = ({ active }: ShowIcon) => {
   );
 };
 
-const Done = ({ active: showIcon }: ShowIcon) => {
+const Done = ({ active }: ShowIcon) => {
   return (
     <>
-      {showIcon ? (
+      {active ? (
         <IoCheckmarkDoneCircleSharp size={24} color="#00c46a" />
       ) : (
         <IoCheckmarkDoneCircleOutline size={24} color="#42484d" />

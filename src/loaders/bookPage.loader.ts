@@ -1,10 +1,9 @@
 import { Params } from 'react-router-dom';
-import { APIClient } from '../services/api-client';
+import bookService from '../services/book-service';
 
-const apiClient = new APIClient('/works');
-
+// Retrieve book data from the Open Library Works API when the `BookPage` component loads.
 const bookLoader = async ({ params }: { params: Params }) => {
-  const book = apiClient.getBook(params);
+  const book = bookService.getBook(params);
   return book;
 };
 

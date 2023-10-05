@@ -4,7 +4,8 @@ import sliceSubjects from './sliceSubjects';
 import transformBookCover from './transformBookCover';
 import transformBookID from './transformBookID';
 
-// TODO: fix the undefined porblem by: book.covers ? book.covers[0] : undefined
+// Processes book retrieved from the Open Library Works API and maps the keys to more friendly format
+
 function transformBook(book: BookDetailsResponse): BookDetails {
   return {
     title: book.title,
