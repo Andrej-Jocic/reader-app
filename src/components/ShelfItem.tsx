@@ -2,12 +2,12 @@ import { HiArrowNarrowRight } from 'react-icons/hi';
 import { Link } from 'react-router-dom';
 import Shelf from '../entities/Shelf';
 
-const ShelvesList = ({ shelf }: { shelf: Shelf }) => {
+const ShelfItem = ({ shelf }: { shelf: Shelf }) => {
   return (
     <li>
       <h1>{shelf.shelfName}</h1>
       {shelf.books.map((book) => (
-        <p>
+        <p key={book.id}>
           <HiArrowNarrowRight color="#00c46a" />
           <Link to={`/book/${book.id}`}>
             {book.title}, {book.publishYear}
@@ -18,4 +18,4 @@ const ShelvesList = ({ shelf }: { shelf: Shelf }) => {
   );
 };
 
-export default ShelvesList;
+export default ShelfItem;

@@ -6,6 +6,7 @@ import ErrorPage from './pages/ErrorPage';
 import BookshelfPage from './pages/BookshelfPage';
 import BookshelfAllPage from './pages/BookshelfAllPage';
 import ShelvesPage from './pages/ShelvesPage';
+import BookPage, { loader as bookLoader } from './pages/BookPage';
 
 const router = createBrowserRouter([
   {
@@ -37,6 +38,11 @@ const router = createBrowserRouter([
             element: <ShelvesPage />,
           },
         ],
+      },
+      {
+        path: '/book/:id',
+        element: <BookPage />,
+        loader: bookLoader,
       },
     ],
   },

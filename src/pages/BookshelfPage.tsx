@@ -14,9 +14,14 @@ const Bookshelf = () => {
 
   return (
     <section className={styles.section}>
-      {!booksLength && !shelvesLength ? <BookshelfHome /> : <BookshelfNav />}
-
-      <Outlet />
+      {!booksLength && !shelvesLength ? (
+        <BookshelfHome />
+      ) : (
+        <>
+          <BookshelfNav />
+          <Outlet />
+        </>
+      )}
     </section>
   );
 };

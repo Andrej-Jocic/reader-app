@@ -22,12 +22,12 @@ function BookItem({ book }: Props) {
 
   const bookmarkedBookIds = useSelector(getBookmarkedBookIds);
   const isBookmarked = bookmarkedBookIds.includes(book.id);
-  //TODO: check if all function is with function keyword
+
   function handleBookmark() {
     dispatch(toogleBook(book));
     dispatch(toggleBookmark({ id: book.id }));
   }
-  // getBookmarked() - returns an array of ids of bookmarked books
+
   return (
     <li className={styles.bookItem}>
       <div className={styles.bookItemImg}>
@@ -35,8 +35,6 @@ function BookItem({ book }: Props) {
       </div>
 
       <div className={styles.box}>
-        {/* onClick - add/remove book id to the bookmarked array */}
-        {/* onClick - add/remove book from bookmarked book in bookshelf */}
         <Icon
           onClick={handleBookmark}
           title="Bookmark"

@@ -1,14 +1,13 @@
 import { FormEvent, useState } from 'react';
 import { useSelector } from 'react-redux';
-import ShelvesList from '../components/ShelvesList';
 import { useDispatch } from '../hooks/useDispatch';
 import {
   createShelf,
   getBookmarkedBooks,
-  getShelves,
   getShelfNames,
 } from '../state/bookshelfSlice';
 import styles from './ShelvesPage.module.css';
+import ShelfList from '../components/ShelfList';
 
 const ShelvesPage = () => {
   const [showForm, setShowForm] = useState(false);
@@ -16,7 +15,6 @@ const ShelvesPage = () => {
   const dispatch = useDispatch();
 
   const books = useSelector(getBookmarkedBooks);
-  const shelves = useSelector(getShelves);
   const shelfNames = useSelector(getShelfNames);
 
   const handleSubmit = (e: FormEvent) => {
@@ -25,7 +23,6 @@ const ShelvesPage = () => {
     const formData = new FormData(e.currentTarget as HTMLFormElement);
     const shelfName = formData.get('shelf') as string;
 
-    // - Guard clause
     if (shelfName.length === 0) return;
     // TODO: show message if the shelf name already exist
     if (shelfNames.includes(shelfName)) return;
@@ -34,7 +31,6 @@ const ShelvesPage = () => {
       (key) => key !== 'shelf'
     );
 
-    // - Guard clause
     if (bookIds.length === 0) return;
 
     dispatch(createShelf({ shelfName, bookIds }));
@@ -80,13 +76,7 @@ const ShelvesPage = () => {
         )}
       </section>
 
-      <section className={styles.container}>
-        <ul className={styles.content}>
-          {shelves.map((shelf) => (
-            <ShelvesList key={shelf.shelfName} shelf={shelf} />
-          ))}
-        </ul>
-      </section>
+      <ShelfList />
     </>
   );
 };

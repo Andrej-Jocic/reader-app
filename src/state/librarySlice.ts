@@ -47,6 +47,7 @@ const librarySlice = createSlice({
 
 const LIMIT = 12;
 
+// TODO: refactor this
 const apiClient = new APIClient('/search.json');
 
 export const updateBooks = createAsyncThunk(

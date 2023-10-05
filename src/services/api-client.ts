@@ -1,6 +1,8 @@
 import axios, { AxiosRequestConfig, CanceledError, AxiosError } from 'axios';
 import BookResponse from '../entities/BookResponse';
 import transformBooks from '../helpers/transformBooks';
+import { Params } from 'react-router-dom';
+import transformBook from '../helpers/transformBook';
 
 interface FetchResponse {
   docs: BookResponse[];
@@ -13,18 +15,6 @@ const axiosInstance = axios.create({
 class APIClient {
   constructor(public endpoint: string) {}
 
-  // TODO: make getSearchResult generic to return whole books and just names and ids for search dropdown...
-  /* getSearchResult(query: string) {
-    const controller = new AbortController();
-    const books = axiosInstance
-      .get<FetchResponse>(this.endpoint, {
-        params: { q: query, limit: LIMIT },
-        signal: controller.signal,
-      })
-      .then((res) => transformBooks(res.data.docs));
-
-    return { books, cancle: () => controller.abort() };
-  } */
   getSearchResult(config: AxiosRequestConfig) {
     const books = axiosInstance
       .get<FetchResponse>(this.endpoint, { ...config })
@@ -35,6 +25,14 @@ class APIClient {
       });
 
     return books;
+  }
+
+  // TODO: remove if cause problems
+  getBook(params: Params<'id'>) {
+    const book = axiosInstance
+      .get(`${this.endpoint}/${params.id}.json`)
+      .then((res) => transformBook(res.data));
+    return book;
   }
 }
 
