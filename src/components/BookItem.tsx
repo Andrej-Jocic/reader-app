@@ -5,8 +5,9 @@ import Book from '../entities/Book';
 import dispayAuthors from '../helpers/displayAuthors';
 import sliceTitle from '../helpers/sliceTitle';
 import { useDispatch } from '../hooks/useDispatch';
+import { getIsDone, toggleDone } from '../state/bookSlice';
 import {
-  getBookmarkedBookIds,
+  getIsBookmarked,
   toggleBookmark,
   toogleBook,
 } from '../state/bookshelfSlice';
@@ -20,12 +21,16 @@ interface Props {
 function BookItem({ book }: Props) {
   const dispatch = useDispatch();
 
-  const bookmarkedBookIds = useSelector(getBookmarkedBookIds);
-  const isBookmarked = bookmarkedBookIds.includes(book.id);
+  const bookmarked = useSelector(getIsBookmarked(book.id));
+  const done = useSelector(getIsDone(book.id));
 
   function handleBookmark() {
     dispatch(toogleBook(book));
     dispatch(toggleBookmark({ id: book.id }));
+  }
+
+  function handleDone() {
+    dispatch(toggleDone({ id: book.id }));
   }
 
   return (
@@ -38,13 +43,11 @@ function BookItem({ book }: Props) {
         <Icon
           onClick={handleBookmark}
           title="Bookmark"
-          active={isBookmarked}
+          active={bookmarked}
           absoulte={true}
         />
 
-        {/* {bookshelf && (
-          <Icon onClick={handleDone} title="Done" showIcon={done} />
-        )} */}
+        {bookmarked && <Icon onClick={handleDone} title="Done" active={done} />}
       </div>
 
       <div className={styles.bookItemInfo}>

@@ -1,6 +1,10 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit';
 import { RootState } from '../store';
 
+interface ToggleDonePayload {
+  id: string;
+}
+
 type Note = {
   id: string;
   note: string;
@@ -10,10 +14,12 @@ type Note = {
 type InitialState = {
   // The book id serves as the key that holds an array of notes associated with a specific book.
   notes: { [key: string]: Note[] }[];
+  doneBooks: string[];
 };
 
 const initialState: InitialState = {
   notes: [],
+  doneBooks: [],
 };
 
 // TODO: add the `done` feture
@@ -38,11 +44,25 @@ const bookSlice = createSlice({
         });
       }
     },
+    toggleDone(state, action: PayloadAction<ToggleDonePayload>) {
+      const index = state.doneBooks.indexOf(action.payload.id);
+
+      if (index === -1) {
+        // If the ID is not in the array, add it
+        state.doneBooks.push(action.payload.id);
+      } else {
+        // If the ID is already in the array, remove it
+        state.doneBooks.splice(index, 1);
+      }
+    },
   },
 });
 
 export const getNotes = (id: string) => (state: RootState) =>
   state.book.notes.find((note) => note[id]);
 
-export const { addNote } = bookSlice.actions;
+export const getIsDone = (id: string) => (state: RootState) =>
+  state.book.doneBooks.includes(id);
+
+export const { addNote, toggleDone } = bookSlice.actions;
 export default bookSlice.reducer;

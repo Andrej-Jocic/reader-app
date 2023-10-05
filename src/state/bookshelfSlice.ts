@@ -65,6 +65,9 @@ const bookshelfSlice = createSlice({
 export const getBookmarkedBookIds = (state: RootState) =>
   state.bookshelf.bookmarkedBookIds;
 
+export const getIsBookmarked = (id: string) => (state: RootState) =>
+  state.bookshelf.bookmarkedBookIds.includes(id);
+
 export const getBookmarkedBooks = (state: RootState) =>
   state.bookshelf.bookmarkedBooks;
 

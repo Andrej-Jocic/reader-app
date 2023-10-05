@@ -1,17 +1,17 @@
 import { FaArrowLeft } from 'react-icons/fa';
+import { useSelector } from 'react-redux';
 import { useLoaderData, useNavigate } from 'react-router-dom';
+import Notes from '../components/Notes';
 import BookDetails from '../entities/BookDetails';
 import displayAuthors from '../helpers/displayAuthors';
+import { getIsBookmarked } from '../state/bookshelfSlice';
 import styles from './BookPage.module.css';
-import { useSelector } from 'react-redux';
-import { getBookmarkedBookIds } from '../state/bookshelfSlice';
-import Notes from '../components/Notes';
 
 const BookPage = () => {
   const navigate = useNavigate();
 
   const book = useLoaderData() as BookDetails;
-  const bookmarked = useSelector(getBookmarkedBookIds);
+  const bookmarked = useSelector(getIsBookmarked(book.id));
 
   return (
     <section className={styles.bookDetails}>
@@ -66,7 +66,7 @@ const BookPage = () => {
           </div>
         </div>
       </div>
-      {bookmarked.includes(book.id) && <Notes />}
+      {bookmarked && <Notes />}
     </section>
   );
 };
