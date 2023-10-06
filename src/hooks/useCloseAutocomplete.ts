@@ -21,6 +21,6 @@ function useCloseAutocomplete(ref: RefObject<HTMLUListElement>) {
     return () => {
       document.removeEventListener('click', handleClick);
     };
-  });
+  }, [ref, dispatch]);
 }
 export default useCloseAutocomplete;

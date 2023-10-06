@@ -1,14 +1,20 @@
-import { FormEvent, useState } from 'react';
+import { FormEvent, useRef, useState } from 'react';
 import { FaSearch } from 'react-icons/fa';
-import { updateBooks } from '../state/librarySlice';
-import styles from './Search.module.css';
 import { useDispatch } from '../hooks/useDispatch';
+import useFocus from '../hooks/useFocus';
 import useSearch from '../hooks/useSearch';
+import { updateBooks } from '../state/librarySlice';
 import Autocomplete from './Autocomplete';
+import styles from './Search.module.css';
 
 const Search = () => {
   // State for capturing the user's current input in the Search input field.
   const [query, setQuery] = useState('');
+
+  // Focus search input on component mount
+  const ref = useRef<HTMLInputElement>(null);
+  useFocus(ref);
+
   // Custom hook to handle autocomplete feature
   useSearch(query);
 
@@ -39,6 +45,7 @@ const Search = () => {
             placeholder="Explore library"
             value={query}
             onChange={(e) => handleChange(e.target.value)}
+            ref={ref}
           />
           <button type="submit">
             <FaSearch size={20} color="#00c46a" />
